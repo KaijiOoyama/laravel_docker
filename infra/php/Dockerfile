@@ -13,8 +13,9 @@ RUN apt-get update && \
     apt-get -y install --no-install-recommends git unzip libzip-dev libicu-dev libonig-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
     # docker-php-ext-install:ｐｈｐのdockerイメージ専用の拡張モジュールのマネージャ
-    docker-php-ext-install intl pdo_mysql zip bcmath && \
+    docker-php-ext-install intl pdo_mysql zip bcmath redis && \
     pecl install xdebug && \
     docker-php-ext-enable xdebug
 
