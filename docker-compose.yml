@@ -19,5 +19,15 @@ services:
     build: ./infra/mysql
     volumes:
       - db-store:/var/lib/mysql
+  #redisコンテナ
+  redis:
+    image: redis:latest
+    container_name: redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-volume:/data
+    ports:
+      - 6379:6379
 volumes:
   db-store:
+  redis-volume:
